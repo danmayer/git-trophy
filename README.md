@@ -24,3 +24,7 @@ __Ratio Tracking__
 grep commits for fix, WTF, curse words, etc... we can show the % of commits that contain WTF, curses, fix, ship-it, etc showing the highest of each category for the projects
 
 
+### Similar projects
+
+* [WTF by programming language](http://www.codeodor.com/index.cfm/2011/8/11/wtfs-by-programming-language-repository-on-github/3395)
+* [Git Achievements](https://github.com/icefox/git-achievements)
