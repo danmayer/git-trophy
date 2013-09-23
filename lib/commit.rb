@@ -8,16 +8,21 @@ class Commit
 
   def self.parse(string)
     lines = string.split("\n")
-    hash = {
-      :sha => lines[0].match(/\s(.+$)/)[1],
-      :author => parse_author(lines[1]),
-      :email => parse_email(lines[1]),
-      :date => parse_date(lines[2]),
-      :message => parse_message(lines),
-      :insertions => parse_insertions(lines.last),
-      :deletions => parse_deletions(lines.last)
-    }
-    self.new(hash)
+    begin
+      hash = {
+        :sha => lines[0].match(/\s(.+$)/)[1],
+        :author => parse_author(lines[1]),
+        :email => parse_email(lines[1]),
+        :date => parse_date(lines[2]),
+        :message => parse_message(lines),
+        :insertions => parse_insertions(lines.last),
+        :deletions => parse_deletions(lines.last)
+      }
+      self.new(hash)
+    rescue => error
+      puts "error #{hash} skipping commit #{string}"
+      nil
+    end
   end
 
   def initialize(hash)
@@ -28,6 +33,10 @@ class Commit
     @message = hash[:message]
     @insertions = hash[:insertions]
     @deletions = hash[:deletions]
+  end
+
+  def to_s
+    [@sha, @author, @email, @date, @message, @insertions, @deletions].join("\n")
   end
 
   private
