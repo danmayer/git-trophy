@@ -4,7 +4,11 @@ A project to give out trophies on projects, as well as allow users to receive ac
 
 All award type should be tracked at the world level, project level, and the user leve.
 
-Award types:
+# Run locally
+
+`bundle exec rake run`
+
+# Award types:
 
 ## Trophy
 
