@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rake'
+require './lib/stats'
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
@@ -8,3 +9,10 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 task :default => :test
+
+desc "Run trophies locally"
+task :run do
+  puts "running agaisnt project"
+  Stats.generate
+  puts "done"
+end
