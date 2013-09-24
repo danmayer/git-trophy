@@ -8,7 +8,7 @@ class Stats
 
   def self.generate
     commits = `git rev-list --all --reverse`.split("\n")
-    parsed_commits = commits.map{|c| puts c; commit(c)}.compact
+    parsed_commits = commits.map{|c| commit(c)}.compact
     
     trophies = Trophy.subclasses
     awarded_trophies = {}
