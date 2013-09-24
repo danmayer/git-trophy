@@ -23,13 +23,28 @@ class Stats
       parsed_commits.each do |commit|
         current_trophy = trophy.new
         puts "checking #{commit.message}"
-        awarded_trophies[trophy] = commit if current_trophy.satisfied?(commit)
+        if current_trophy.satisfied?(commit)
+          awarded_trophies[trophy] = commit 
+          commit.author.award(trophy)
+        end
       end
     end
     puts "awards #{awarded_trophies.inspect}"
+    puts "="*20
+    puts "developers"
+    @developers.values.each do |developer|
+      puts "#{developer.name} <#{developer.email}>"
+      puts "awards"
+      developer.trophies.each do |trophy|
+        puts trophy
+      end
+      puts ""
+    end
   end
 
   def find_or_create_developer(name, email)
+    return if name.empty? && email.empty?
+
     if !@developers.include?(email)
       dev = Developer.new(:name => name, :email => email)
       @developers[email] = dev
