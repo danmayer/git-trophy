@@ -13,6 +13,6 @@ task :default => :test
 desc "Run trophies locally"
 task :run do
   puts "running agaisnt project"
-  Stats.generate
+  Stats.new.generate
   puts "done"
 end
