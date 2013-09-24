@@ -18,7 +18,7 @@ Weekly trophy, shows the standing for the current week. At the end of each week 
 * :trophy: __Developer of the Week__: You have been busy this week, write more lines of code than any other developers.
 * :sailboat: __Sailer Talk__: Work professional what's that, use a swear in a commit.
 * :coffee: __Night Owl__: Who need sleep when you have coffee? make a commit after 3 AM.
-* :pencil: __Me fail engish that's umpossible__: You don't need a degree in english to write code, make a spelling error in a commit message.
+* :pencil: __Me fail engish that's umpossible__: You don't need a degree in English to write code, make a spelling error in a commit message.
 * :santa: __Xmas Hacker__: The best present is a new feature, make a commit on Christmas day.
 * :clipboard: __King of Clipboard__: Who needs to write new code when there are so many good examples in the codebase, copy and paste some code.
 * :blue_book: __Long Winded__: Good code requires good explanations, write a commit message with more than 500 words.
