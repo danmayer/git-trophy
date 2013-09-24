@@ -4,7 +4,7 @@ require 'active_support/time'
 
 # Contains information about a git commit
 class Commit
-  attr_accessor :sha, :author, :email, :date, :message, :insertions, :deletions
+  attr_reader :sha, :author, :email, :date, :message, :insertions, :deletions
 
   def self.parse(string)
     lines = string.split("\n")
