@@ -1,10 +1,15 @@
 require './lib/commit'
+require './lib/developer'
 require './lib/trophy'
 require './lib/long_winded'
 require './lib/quadruple_revert'
 require './lib/wtf_commit'
 
 class Stats
+
+  def initialize
+    @developers = {}
+  end
 
   def generate
     commits = `git rev-list --all --reverse`.split("\n")
@@ -22,6 +27,14 @@ class Stats
       end
     end
     puts "awards #{awarded_trophies.inspect}"
+  end
+
+  def find_or_create_developer(name, email)
+    if !@developers.include?(email)
+      dev = Developer.new(:name => name, :email => email)
+      @developers[email] = dev
+    end
+    @developers[email]
   end
 
   private
