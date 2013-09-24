@@ -6,7 +6,7 @@ require './lib/wtf_commit'
 
 class Stats
 
-  def self.generate
+  def generate
     commits = `git rev-list --all --reverse`.split("\n")
     parsed_commits = commits.map{|c| commit(c)}.compact
     
@@ -24,7 +24,8 @@ class Stats
     puts "awards #{awarded_trophies.inspect}"
   end
 
-  def self.commit(sha)
+  private
+  def commit(sha)
     Commit.parse(`git log -1 --stat --pretty #{sha}`)
   end
 
