@@ -12,11 +12,11 @@ All award type should be tracked at the world level, project level, and the user
 
 ## Trophy
 
-Weekly trophy, shows the standing for the current week. At the end of each week the winner is awarded the trophey and gets there name 'on the trophy' in the so people can see past winners
+Weekly trophy, shows the standing for the current week. At the end of each week the winner is awarded the trophy and gets there name 'on the trophy' in the so people can see past winners
 
 ### Trophy List
 * :trophy: __Developer of the Week__: You have been busy this week, write more lines of code than any other developers.
-* :sailboat: __Sailer Talk__: Work professional what's that, use a swear in a commit.
+* :sailboat: __Sailor Talk__: Work professional what's that, use a swear in a commit.
 * :coffee: __Night Owl__: Who need sleep when you have coffee? make a commit after 3 AM.
 * :pencil: __Me fail engish that's umpossible__: You don't need a degree in English to write code, make a spelling error in a commit message.
 * :santa: __Xmas Hacker__: The best present is a new feature, make a commit on Christmas day.
@@ -26,9 +26,9 @@ Weekly trophy, shows the standing for the current week. At the end of each week 
 * :interrobang: __Quadruple Revert__: code fears your fickle nature, revert a commit four times.
 * :beginner: __I'm new here__: Its your first day, or maybe not, make a commit to the repo.
 
-## Acheivements
+## Achievements
 
-This would be something like the triple revert acheivement when you have a commit that includes 3 reverts, or the coveted quadruple revert
+This would be something like the triple revert achievement when you have a commit that includes 3 reverts, or the coveted quadruple revert
 
 ## Leaderboard
 
