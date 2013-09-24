@@ -13,11 +13,11 @@ class CommitTest < Test::Unit::TestCase
                Gemfile | 3 +++
                1 file changed, 3 insertions(+)}
 
-    commit = Commit.parse(log)
+    commit = Commit.parse(log, self)
 
     assert_equal "ed73b2ed231a384fd2d684b82c526e3f62bb3966", commit.sha
-    assert_equal "Christian Doyle", commit.author
-    assert_equal "christian.l.doyle@gmail.com", commit.email
+    assert_equal "Christian Doyle", commit.author.name
+    assert_equal "christian.l.doyle@gmail.com", commit.author.email
     assert_equal Time.parse("Sun Sep 22 14:52:00 2013 -0400"), commit.date
     assert_equal "Added gemfile.", commit.message.strip
     assert_equal 3, commit.insertions
@@ -33,7 +33,11 @@ class CommitTest < Test::Unit::TestCase
 
                   Updated formatting and added several trophies.}
     assert_nothing_raised do 
-      Commit.parse(log)
+      Commit.parse(log, self)
     end
+  end
+
+  def find_or_create_developer(name, email)
+    Developer.new(:name => name, :email => email)
   end
 end
