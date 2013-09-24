@@ -39,7 +39,11 @@ class Stats
 
   private
   def commit(sha)
-    Commit.parse(`git log -1 --stat --pretty #{sha}`)
+    # TODO doyle: I always feel strange when passing self
+    #  into a method, however, at this moment I don't feel
+    #  that I am justified in create a new object just
+    #  to own the list of developers
+    Commit.parse(`git log -1 --stat --pretty #{sha}`, self)
   end
 
 end

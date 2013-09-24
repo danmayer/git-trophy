@@ -4,15 +4,16 @@ require 'active_support/time'
 
 # Contains information about a git commit
 class Commit
-  attr_reader :sha, :author, :email, :date, :message, :insertions, :deletions
+  attr_reader :sha, :author, :date, :message, :insertions, :deletions
 
-  def self.parse(string)
+  def self.parse(string, authors)
     lines = string.split("\n")
     begin
       hash = {
         :sha => lines[0].match(/\s(.+$)/)[1],
-        :author => parse_author(lines[1]),
-        :email => parse_email(lines[1]),
+        :author => authors.find_or_create_developer(
+          parse_author(lines[1]),
+          parse_email(lines[1])),
         :date => parse_date(lines[2]),
         :message => parse_message(lines),
         :insertions => parse_insertions(lines.last),
@@ -28,7 +29,6 @@ class Commit
   def initialize(hash)
     @sha = hash[:sha]
     @author = hash[:author]
-    @email = hash[:email]
     @date = hash[:date]
     @message = hash[:message]
     @insertions = hash[:insertions]
@@ -36,7 +36,7 @@ class Commit
   end
 
   def to_s
-    [@sha, @author, @email, @date, @message, @insertions, @deletions].join("\n")
+    [@sha, @author, @date, @message, @insertions, @deletions].join("\n")
   end
 
   private
