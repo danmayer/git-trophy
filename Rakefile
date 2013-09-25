@@ -12,7 +12,13 @@ task :default => :test
 
 desc "Run trophies locally"
 task :run do
-  puts "running agaisnt project"
-  Stats.new.generate
+  puts "running against project"
+  project_dir = (ENV['TROPHY_DIR'] || `pwd`).strip
+
+  logger   = Logger.new(STDOUT)
+  log_level = (ENV['LOG_LEVEL'] || Logger::INFO).to_i
+  logger.level = log_level
+  
+  Stats.new(:dir => project_dir, :logger => logger).generate
   puts "done"
 end

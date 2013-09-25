@@ -1,3 +1,5 @@
+require 'logger'
+
 require './lib/commit'
 require './lib/developer'
 require './lib/trophy'
@@ -7,38 +9,42 @@ require './lib/wtf_commit'
 
 class Stats
 
-  def initialize
+  def initialize(opts = {})
+    @project_directory = opts.fetch(:dir){ `pwd` }.strip
+    @logger = opts.fetch(:logger){ Logger.new(STDOUT) }
     @developers = {}
   end
 
   def generate
-    commits = `git rev-list --all --reverse`.split("\n")
-    parsed_commits = commits.map{|c| commit(c)}.compact
-    
-    trophies = Trophy.subclasses
-    awarded_trophies = {}
-    puts "calculating trophies #{trophies.length}: #{trophies.inspect}"
-    trophies.each do |trophy|
-      puts "checking #{trophy}"
-      parsed_commits.each do |commit|
-        current_trophy = trophy.new
-        puts "checking #{commit.message}"
-        if current_trophy.satisfied?(commit)
-          awarded_trophies[trophy] = commit 
-          commit.author.award(trophy)
+    in_directory do
+      commits = `git rev-list --all --reverse`.split("\n")
+      parsed_commits = commits.map{|c| commit(c)}.compact
+      
+      trophies = Trophy.subclasses
+      awarded_trophies = {}
+      @logger.info "calculating trophies #{trophies.length}: #{trophies.inspect}"
+      trophies.each do |trophy|
+        @logger.debug "checking #{trophy}"
+        parsed_commits.each do |commit|
+          current_trophy = trophy.new
+          @logger.debug "checking #{commit.message}"
+          if current_trophy.satisfied?(commit)
+            awarded_trophies[trophy] = commit 
+            commit.author.award(trophy)
+          end
         end
       end
-    end
-    puts "awards #{awarded_trophies.inspect}"
-    puts "="*20
-    puts "developers"
-    @developers.values.each do |developer|
-      puts "#{developer.name} <#{developer.email}>"
-      puts "awards"
-      developer.trophies.each do |trophy|
-        puts trophy
+      @logger.info "Trophies awarded (#{awarded_trophies.length}): #{awarded_trophies.inspect}"
+      @logger.info "="*20
+      @logger.info "developers"
+      @developers.values.each do |developer|
+        @logger.info "#{developer.name} <#{developer.email}>"
+        @logger.info "awards"
+        developer.trophies.each do |trophy|
+          @logger.info trophy
+        end
+        @logger.info ""
       end
-      puts ""
     end
   end
 
@@ -53,6 +59,13 @@ class Stats
   end
 
   private
+
+  def in_directory
+    Dir.chdir(@project_directory) do
+      yield
+    end
+  end
+  
   def commit(sha)
     # TODO doyle: I always feel strange when passing self
     #  into a method, however, at this moment I don't feel

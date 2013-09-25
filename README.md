@@ -8,6 +8,10 @@ All award type should be tracked at the world level, project level, and the user
 
 `bundle exec rake run`
 
+or against another project
+
+`TROPHY_DIR=/Users/danmayer/projects/churn bundle exec rake run`
+
 # Award types:
 
 ## Trophy
@@ -24,6 +28,8 @@ Weekly trophy, shows the standing for the current week. At the end of each week 
 * :blue_book: __Long Winded__: Good code requires good explanations, write a commit message with more than 500 words.
 * :hocho: __I hate whitespace__: Deleting whitespace has lots of benefits like, um, I'll get back to you, make a commit that changes nothing but whitespace.
 * :interrobang: __Quadruple Revert__: code fears your fickle nature, revert a commit four times.
+* :wrench: __Mr. Fix It__: Your fixing up the code, don't worry about how it was broken in the first place.
+* :no_mouth: __Keeping it Brief__: No reason to explain the code, divine it's meaning from my one word commit message.
 * :beginner: __I'm new here__: Its your first day, or maybe not, make a commit to the repo.
 
 ## Achievements
