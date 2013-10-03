@@ -1,6 +1,6 @@
 require "test/unit"
 require "./lib/commit"
-require "./lib/long_winded"
+require "./lib/trophies/long_winded"
 
 class TrophyTest < Test::Unit::TestCase
 

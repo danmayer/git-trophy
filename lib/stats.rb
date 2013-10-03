@@ -3,9 +3,9 @@ require 'logger'
 require './lib/commit'
 require './lib/developer'
 require './lib/trophy'
-require './lib/long_winded'
-require './lib/quadruple_revert'
-require './lib/wtf_commit'
+require './lib/trophies/long_winded'
+require './lib/trophies/quadruple_revert'
+require './lib/trophies/wtf_commit'
 
 class Stats
 
