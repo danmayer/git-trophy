@@ -41,7 +41,7 @@ class Stats
         @logger.info "#{developer.name} <#{developer.email}>"
         @logger.info "awards"
         developer.trophies.each do |trophy|
-          @logger.info trophy
+          @logger.info "#{trophy.instance.emoji} #{trophy.instance.name}"
         end
         @logger.info ""
       end

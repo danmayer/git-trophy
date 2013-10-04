@@ -1,5 +1,5 @@
 class Trophy
-  attr_reader :name, :description, :conditions
+  attr_reader :name, :description, :conditions, :emoji
 
   def self.instance
     @instance ||= self.new
