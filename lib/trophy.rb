@@ -1,6 +1,10 @@
 class Trophy
   attr_reader :name, :description, :conditions
 
+  def self.instance
+    @instance ||= self.new
+  end
+
   # Returns true if given commit meets the
   # conditions of this trophy
   def satisfied?(commit)
